@@ -19,6 +19,7 @@ public class TicTacToe {
 	     */
 	    
 	    public TicTacToe() {
+	    	
 	    	board = new String[3][3];
 	    	turn = 0;
 	    }
@@ -45,9 +46,11 @@ public class TicTacToe {
 	   {
 	       
 		   for(int r = 0; r < board.length; r++) {
-			 for(int c = 0; c < board.length; c++) {
-				   
+			 for(int c = 0; c < board[r].length; c++) {
+				   board[r][c] = " - ";
+				   System.out.print(board[r][c]);
 			 }
+			 System.out.println(" ");
 		   }
 	       
 	   }
@@ -61,16 +64,32 @@ public class TicTacToe {
 	   
 	   public boolean pickLocation(int row, int col)
 	   {
-	        
+	        if(board[row][col] != " - ") {
+	        	return false;
+	        }
+	        else {
+	        	return true;
+	        }
 	   }
 	   
 	   /**
 	    * 
 	    * This method places an X or O at board[row][col] based on the int turn
+	    * Evens X, Odds O
 	    */
 	   
 	   public void takeTurn(int row, int col)
 	   {
+	      
+	    	  if(turn % 2 == 0)
+	    	  {
+	    		  board[row][col] = " X ";
+	    		  turn++;
+	    	  }
+	    	  else {
+	    		  board[row][col] = " O ";
+	    		  turn++;
+	    	  }
 	      
 	   }
 	   
@@ -83,7 +102,22 @@ public class TicTacToe {
 	   
 	   public boolean checkRow()
 	   {
-	   
+		   boolean isAll = false;
+		   for(int r = 0; r < board.length; r++){
+			   
+			   for(int c = 0; c < board[r].length; c++){
+				   String temp = board[r][0];
+				   if(temp != " - " && temp == board[r][c]){
+					   isAll = true;
+				   }
+				   else {
+					   isAll = false;
+				   }
+			   }
+			  
+			  
+		   }
+		   return isAll;
 	   }
 	   
 	   
@@ -95,7 +129,22 @@ public class TicTacToe {
 	   
 	   public boolean checkCol()
 	   {
-	          
+		   boolean isAll = false;
+		   for(int r = 0; r < board.length; r++){
+			   
+			   for(int c = 0; c < board[r].length; c++){
+				   String temp = board[c][0];
+				   if(temp != " - " && temp == board[c][r]){
+					   isAll = true;
+				   }
+				   else {
+					   isAll = false;
+				   }
+			   }
+			  
+			  
+		   }
+		   return isAll;
 	   }
 	   
 	   
@@ -105,10 +154,10 @@ public class TicTacToe {
 	    * @return: true if either diagonal with all the same value, false otherwise. 
 	    */
 	   
-	   public boolean checkDiag()
-	   {
-
-	   }
+//	   public boolean checkDiag()
+//	   {
+//		   	
+//	   }
 	   
 	   /**
 	    * 
@@ -117,7 +166,12 @@ public class TicTacToe {
 	    */
 	   public boolean checkWin()
 	   {
-	       
+	       if(checkRow() || checkCol()) {
+	    	   return true;
+	       }
+	       else {
+	    	   return false;
+	       }
 	   }
 
 }
