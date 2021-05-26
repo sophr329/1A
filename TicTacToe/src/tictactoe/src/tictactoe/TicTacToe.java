@@ -112,18 +112,10 @@ public class TicTacToe {
 	   {
 		   boolean isAll = false;
 		   for(int r = 0; r < board.length; r++){
-			   
-			   for(int c = 0; c < board[r].length; c++){
 				   String temp = board[r][0];
-				   if(temp != " - " && temp == board[r][c]){
-					   isAll = true;
-				   }
-				   else {
-					   isAll = false;
-				   }
-			   }
-			  
-			  
+				   if(!temp.equals(" - ") && temp.equals(board[r][1])&& temp.equals(board[r][2])){
+					   return true;
+				   }		  
 		   }
 		   return isAll;
 	   }
@@ -138,20 +130,13 @@ public class TicTacToe {
 	   public boolean checkCol()
 	   {
 		   boolean isAll = false;
-		   for(int r = 0; r < board.length; r++){
-			   
-			   for(int c = 0; c < board[r].length; c++){
-				   String temp = board[c][0];
-				   if(temp != " - " && temp == board[c][r]){
-					   isAll = true;
-				   }
-				   else {
-					   isAll = false;
+			   for(int c = 0; c < board[0].length; c++){
+				   String temp = board[0][c];
+				   if(temp != " - " && temp == board[1][c] && temp == board[2][c]){
+					   return true;
 				   }
 			   }
 			  
-			  
-		   }
 		   return isAll;
 	   }
 	   
@@ -175,7 +160,7 @@ public class TicTacToe {
 	           
 	       }
 	       String topR = board[0][2];
-	       if(!topR.equals( "- "))
+	       if(!topR.equals(" - "))
 	       {
 	           if(topR.equals(board[1][1]) && topR.equals(board[2][0]))
 	           {
