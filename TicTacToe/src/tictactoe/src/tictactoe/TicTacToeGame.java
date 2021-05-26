@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TicTacToeGame
 {
-    public static void main(String[] args)
+	public static void main(String[] args){
     {
     	final int MAX_TURNS = 4;
         Scanner input = new Scanner(System.in);
@@ -16,6 +16,7 @@ public class TicTacToeGame
         boolean doneChoosingSpace = false;
         System.out.println("*** TIC TAC TOE ***");
         board.printBoard();
+    
         while (!gameOver && board.getTurn() < MAX_TURNS) {
             
             doneChoosingSpace = false;
@@ -48,7 +49,8 @@ public class TicTacToeGame
         }
         else {
             printWinnerScreen(board);
-        }
+            }
+    }
     }
     
     public static int getInt(Scanner in) {
@@ -86,5 +88,7 @@ public class TicTacToeGame
                 System.out.println("\n'O' it is your turn\n");
             }   
     }
+    
+
     
 }

@@ -22,6 +22,14 @@ public class TicTacToe {
 	    	
 	    	board = new String[3][3];
 	    	turn = 0;
+	    	
+	    	for(int row = 0; row < board.length; row++)
+	        {
+	            for(int col = 0; col < board[row].length; col++)
+	            {
+	                board[row][col] = " - ";
+	            }
+	        }
 	    }
 	    
 	    
@@ -44,15 +52,15 @@ public class TicTacToe {
 	    
 	   public void printBoard()
 	   {
-	       
-		   for(int r = 0; r < board.length; r++) {
-			 for(int c = 0; c < board[r].length; c++) {
-				   board[r][c] = " - ";
-				   System.out.print(board[r][c]);
-			 }
-			 System.out.println(" ");
-		   }
-	       
+		   for(int r = 0; r < board.length; r++)
+	       {
+	           for(int c = 0; c < board[r].length; c++)
+	           {
+	               
+	               System.out.print(board[r][c] + " ");
+	           }
+	           System.out.println();
+	       }
 	   }
 	   
 	   /**
@@ -64,11 +72,11 @@ public class TicTacToe {
 	   
 	   public boolean pickLocation(int row, int col)
 	   {
-	        if(board[row][col] != " - ") {
-	        	return false;
+	        if(board[row][col] == " - ") {
+	        	return true;
 	        }
 	        else {
-	        	return true;
+	        	return false;
 	        }
 	   }
 	   
@@ -81,7 +89,7 @@ public class TicTacToe {
 	   public void takeTurn(int row, int col)
 	   {
 	      
-	    	  if(turn % 2 == 0)
+	    	  if(getTurn() % 2 == 0)
 	    	  {
 	    		  board[row][col] = " X ";
 	    		  turn++;
@@ -154,10 +162,29 @@ public class TicTacToe {
 	    * @return: true if either diagonal with all the same value, false otherwise. 
 	    */
 	   
-//	   public boolean checkDiag()
-//	   {
-//		   	
-//	   }
+	   public boolean checkDiag()
+	   {
+		   String topL = board[0][0];
+	       boolean isTrue = false;
+	       if(!topL.equals(" - "))
+	       {
+	           if(topL.equals(board[1][1]) && topL.equals(board[2][2]))
+	           {
+	               isTrue = true;
+	           }
+	           
+	       }
+	       String topR = board[0][2];
+	       if(!topR.equals( "- "))
+	       {
+	           if(topR.equals(board[1][1]) && topR.equals(board[2][0]))
+	           {
+	               isTrue = true;
+	           }
+	           
+	       }
+	       return isTrue;
+	   }
 	   
 	   /**
 	    * 
@@ -166,7 +193,7 @@ public class TicTacToe {
 	    */
 	   public boolean checkWin()
 	   {
-	       if(checkRow() || checkCol()) {
+	       if(checkRow() || checkCol() || checkDiag()) {
 	    	   return true;
 	       }
 	       else {
