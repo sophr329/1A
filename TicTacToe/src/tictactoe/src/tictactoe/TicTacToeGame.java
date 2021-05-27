@@ -44,7 +44,7 @@ public class TicTacToeGame
             }
         }
         
-        if (board.getTurn() == MAX_TURNS) {
+        if (board.getTurn() == MAX_TURNS && board.checkWin() == false) {
             printTieScreen(board);
         }
         else {
